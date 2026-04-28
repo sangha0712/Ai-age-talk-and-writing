@@ -28,6 +28,7 @@ const chapters = [
       "그렇게 처음 올린 영상은 지금 생각해보면 정말 엉터리였다. 우선 그냥 게임 녹화만 한 수준이었다. 음질도 다 깨져 있었고, 내 목소리도 제대로 들리지 않아 무슨 말을 하는지 알아듣기 어려웠다. 완성도만 놓고 보면 부족한 점투성이였지만, 이상하게도 그때의 나는 기대감이 컸다. 이렇게 올리면 누군가는 봐줄 것 같았고, 조회수도 조금씩 늘어날 것이라고 생각했다. 지금 돌아보면 근거 없는 기대였지만, 당시에는 그런 기대조차 나를 즐겁게 만들었다. 결과가 어떻든 간에 내가 직접 무언가를 만들고 남긴다는 사실 자체가 꽤 신났던 것 같다.",
       "하지만 영상이 몇 개 쌓이면서 조금씩 부족한 점들이 보이기 시작했다. 가장 먼저 느낀 건 조회수가 생각처럼 잘 나오지 않는다는 점이었다. 또 다른 유튜버들의 영상을 보면서 자연스럽게 비교하게 되었다. 왜 다른 사람들의 영상은 인게임 사운드나 마이크 소리가 깔끔하게 들리는데, 내 영상은 그렇지 않을까 하는 의문이 생겼다. 지금 생각해보면 모바일 게임을 녹화할 때 손가락으로 마이크를 막고 있었던 것이 원인이었지만, 그때는 그런 기본적인 부분도 잘 몰랐다. 무엇보다도 내 영상을 내가 다시 봤을 때 빠져들지 못했다. 전체적으로 심심해 보였고, 내가 하는 말 역시 그렇게 재미있게 느껴지지 않았다. 드립도 부족했고, 진행도 서툴렀다. 그렇게 하나둘 불만족스러운 점들이 쌓이면서, 단순 녹화만으로는 부족하다는 생각이 들었고 자연스럽게 편집을 해봐야겠다고 마음먹게 되었다.",
     ],
+    imageUrl: "https://igx.kr/r/k0/0/0"
   },
   {
     title: "모바일 편집 프로그램 활용",
@@ -48,6 +49,7 @@ const chapters = [
       "돌아보면 나는 편집에 한번 빠지면 꽤 깊게 들어가는 편이었다. 중학교 때도 반에서 같이 볼 영상을 만들게 되면 새벽 5시까지 편집해가며 완성했던 기억이 있다. 고등학교에 들어가서는 시험기간만 제외하면 거의 늘 편집기를 붙잡고 살았다. 직접 만든 영상을 학교 발표 자료로 사용하기도 했고, 수행평가에 활용하기도 했다. 특히 시험이 끝난 날이면 컴퓨터 앞에 앉아 새벽 3시까지 편집을 하곤 했는데, 그때 부모님이 “뭘 그렇게까지 하냐”고 말씀하신 적도 있었다. 지금 생각하면 그 시기부터 나는 이미 편집을 단순한 취미로만 대하고 있지는 않았던 것 같다.",
       "부모님 말씀에 따르면, 내가 영상에 집중하던 시기와 공부에 집중하는 능력이 조금씩 생기기 시작한 시기가 비슷했다고 한다. 전에는 좋아하는 것만 붙잡고 사는 느낌이 강했다면, 그 시기부터는 하나를 붙잡으면 끝까지 해보려는 태도가 보이기 시작했다고 하셨다. 나도 돌이켜보면 영상을 만들며 무언가를 오래 붙잡고 완성해보는 경험이 다른 일에도 조금씩 영향을 주기 시작했던 것 같다.",
     ],
+    imageUrl: "https://igx.kr/r/k0/0/1"
   },
   {
     title: "제작 경험 누적과 성과",
@@ -356,7 +358,7 @@ const CTABox = ({ onRead }: { onRead: () => void }) => (
   </motion.div>
 );
 
-const ChapterBlock = ({ chapter, index }: { chapter: typeof chapters[0], index: number }) => {
+const ChapterBlock = ({ chapter, index }: { chapter: typeof chapters[0] | any, index: number }) => {
   return (
     <motion.section 
       initial={{ opacity: 0, y: 30 }}
@@ -375,6 +377,12 @@ const ChapterBlock = ({ chapter, index }: { chapter: typeof chapters[0], index: 
         </div>
       </div>
       
+      {chapter.imageUrl && (
+        <div className="mb-8 md:mb-10 rounded-2xl overflow-hidden shadow-lg border border-black/5 bg-gray-100 flex justify-center">
+          <img src={chapter.imageUrl} alt={chapter.title} className="w-full h-auto object-cover max-h-[500px]" referrerPolicy="no-referrer" />
+        </div>
+      )}
+
       <div className="space-y-6 md:space-y-8">
         {chapter.paragraphs.map((p, i) => (
           <p key={i} className="text-base md:text-lg font-sans leading-relaxed text-[#4a4744]">
