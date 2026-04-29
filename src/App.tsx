@@ -8,7 +8,8 @@ import {
   ChevronDown, Clapperboard, MonitorPlay, Sparkles, 
   Video, Play, BookOpen, Gamepad2, Lightbulb, 
   Smartphone, Monitor, Trophy, Compass, ArrowRight, ArrowLeft, X, Youtube,
-  Quote, Clock, PenTool, Layout
+  Quote, Clock, PenTool, Layout,
+  MessageSquare, Star, Heart, Layers, Target, Eye, MessageCircle
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -466,6 +467,232 @@ const QuoteSection = () => (
   </motion.div>
 );
 
+const skills = [
+  { name: "모바일 편집 (과거)", level: 90, color: "bg-[#2d2a26]" },
+  { name: "Premiere Pro", level: 80, color: "bg-[#4a4744]" },
+  { name: "After Effects", level: 55, color: "bg-[#8c857f]" },
+  { name: "연출 및 모션 기획", level: 75, color: "bg-[#b5b0ab]" },
+  { name: "스토리텔링 및 흐름", level: 85, color: "bg-[#d1ccc7]" },
+];
+
+const SkillsSection = () => (
+  <div className="max-w-4xl mx-auto px-6 py-20">
+    <div className="mb-14 text-center">
+      <motion.p 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="text-[#8c857f] font-sans text-sm tracking-widest uppercase mb-3"
+      >
+        Capabilities
+      </motion.p>
+      <motion.h2 
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-3xl md:text-4xl font-sans font-bold text-[#2d2a26]"
+      >
+        역량 분석
+      </motion.h2>
+    </div>
+
+    <div className="space-y-6 max-w-2xl mx-auto">
+      {skills.map((skill, i) => (
+        <motion.div 
+          key={i}
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.1, duration: 0.5 }}
+        >
+          <div className="flex justify-between items-end mb-2">
+            <span className="font-bold font-sans text-[#2d2a26] text-sm md:text-base">{skill.name}</span>
+            <span className="text-xs font-sans text-gray-400 font-bold tracking-wider">{skill.level}%</span>
+          </div>
+          <div className="h-2 w-full bg-black/5 rounded-full overflow-hidden">
+            <motion.div 
+              initial={{ width: 0 }}
+              whileInView={{ width: `${skill.level}%` }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: i * 0.1 + 0.3, ease: "easeOut" }}
+              className={`h-full ${skill.color}`}
+            />
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+);
+
+const feedbackImages = [
+  "https://igx.kr/r/k0/0/3",
+  "https://igx.kr/r/k0/0/4",
+  "https://igx.kr/r/k0/0/5",
+  "https://igx.kr/r/k0/0/6"
+];
+
+const FeedbackSection = () => (
+  <div className="max-w-4xl mx-auto px-6 py-20 bg-gray-50/50 rounded-[3rem] my-10">
+    <div className="mb-14 text-center">
+      <motion.p 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="text-[#8c857f] font-sans text-sm tracking-widest uppercase mb-3"
+      >
+        Reactions
+      </motion.p>
+      <motion.h2 
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-3xl md:text-4xl font-sans font-bold text-[#2d2a26]"
+      >
+        시청자 반응 모음
+      </motion.h2>
+      <p className="mt-4 text-gray-500 font-sans text-sm md:text-base max-w-lg mx-auto">
+        BACKROOM 영상 업로드 이후, 비주류 게임임에도 약 200회의 의미 있는 조회수와 긍정적인 평가를 받았습니다. 
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {feedbackImages.map((src, i) => (
+        <motion.div 
+          key={i}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.1, duration: 0.5 }}
+          className="bg-white rounded-[2rem] shadow-sm border border-black/5 relative group overflow-hidden"
+        >
+          <img src={src} alt={`시청자 반응 ${i + 1}`} className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
+        </motion.div>
+      ))}
+    </div>
+  </div>
+);
+
+const parentInterview = [
+  { 
+    q: "처음 영상 제작을 시작했을 때, 어떤 계기로 시작했다고 보셨는지?", 
+    a: "그냥 유튜브에서 돌아다니는 거 보고 장난식으로 한 줄 알았다." 
+  },
+  { 
+    q: "처음 영상 제작을 하던 시기의 태도나 모습은 어땠는지?", 
+    a: "처음 시작하던 시기의 모습은 잘 알지 못하나, 제작을 하던 시기의 모습이 꽤나 진지하고 열중하는 모습이어서 놀랐다." 
+  },
+  { 
+    q: "영상 제작을 지속하면서 자녀의 태도나 행동에서 변화가 있었다고 느끼셨는지?", 
+    a: "영상에 집중하던 시기와 공부에 집중하는 능력이 향상 되었던 시기가 비슷하였다. 매사에 열중하는 모습이 보이기 시작했던 것 같다." 
+  },
+  { 
+    q: "시간에 따라 노력의 방식이나 집중도가 달라졌다고 느낀 부분이 있다면 무엇인지?", 
+    a: "고등학생이 되고 나서도 공부와 스스로를 성장시키는 집중력을 가지게 되었다고 생각함." 
+  },
+  { 
+    q: "자녀의 영상 제작 능력이나 편집 실력이 어떻게 변화했다고 느끼시는지?", 
+    a: "기존에는 할 수 있는 모든 것을 쏟아 붓는 느낌이었다면, 지금은 최대한 필요한 부분에 맞춰 필요한 부분을 사용하는 깔끔한 방식을 고수하는 느낌이 있는 것 같다." 
+  },
+  { 
+    q: "현재 자녀가 영상 제작에 대해 가지고 있는 태도는 과거와 어떻게 다르다고 생각하시는지?", 
+    a: "어린 시절, 그 당시에는 취미에 불과한 느낌이었다면 최근에는 집에서 가족끼리 보는 드라마와 영화에도 스스로 분석해나가며 진지하게 취미를 진로로 설정하는 진지한 태도를 보임." 
+  }
+];
+
+const FAQSection = () => (
+  <div className="max-w-4xl mx-auto px-6 py-20">
+    <div className="mb-14 text-center">
+      <motion.p 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="text-[#8c857f] font-sans text-sm tracking-widest uppercase mb-3"
+      >
+        Interview
+      </motion.p>
+      <motion.h2 
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-3xl md:text-4xl font-sans font-bold text-[#2d2a26]"
+      >
+        부모님의 시선에서 바라본 나의 모습
+      </motion.h2>
+    </div>
+
+    <div className="space-y-6 max-w-3xl mx-auto">
+      {parentInterview.map((faq, i) => (
+        <motion.div 
+          key={i}
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.1 }}
+          className="bg-white p-8 rounded-3xl border border-black/5 shadow-sm"
+        >
+          <h3 className="text-lg font-bold font-sans text-[#2d2a26] mb-4 flex gap-3 leading-relaxed">
+            <span className="text-gray-300 shrink-0">Q.</span> 
+            {faq.q}
+          </h3>
+          <p className="font-sans leading-relaxed text-[#4a4744] text-sm md:text-base flex gap-3">
+            <span className="font-bold text-[#b5b0ab] shrink-0">A.</span> 
+            {faq.a}
+          </p>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+);
+
+const gallery = [
+  { title: "첫 번째 영상", desc: "단순 화면 녹화와 깨진 음질이 아쉬웠던 초기작.", icon: <Video className="w-8 h-8 opacity-50" />, color: "bg-gray-100" },
+  { title: "모바일 편집 입문", desc: "키네마스터로 자막 애니메이션을 처음 적용해 본 시기.", icon: <Smartphone className="w-8 h-8 opacity-50" />, color: "bg-blue-50" },
+  { title: "프리미어 프로 이주", desc: "어설프지만 BGM과 효과음을 직접 찾아 넣기 시작함.", icon: <MonitorPlay className="w-8 h-8 opacity-50" />, color: "bg-purple-50" },
+  { title: "ESCAPE THE BACKROOM", desc: "직접 기획한 애니메이션과 친구들의 반응이 어우러진 최고점.", icon: <Trophy className="w-8 h-8 opacity-50" />, color: "bg-orange-50" }
+];
+
+const GallerySection = () => (
+  <div className="max-w-4xl mx-auto px-6 py-20">
+    <div className="mb-14 text-center">
+      <motion.p 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="text-[#8c857f] font-sans text-sm tracking-widest uppercase mb-3"
+      >
+        Milestones
+      </motion.p>
+      <motion.h2 
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-3xl md:text-4xl font-sans font-bold text-[#2d2a26]"
+      >
+        주요 제작물 회고
+      </motion.h2>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {gallery.map((item, i) => (
+        <motion.div 
+          key={i}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.1 }}
+          className={`${item.color} rounded-3xl p-8 flex flex-col justify-center min-h-[200px] relative overflow-hidden group`}
+        >
+          <div className="absolute -right-6 -bottom-6 text-black/5 transform group-hover:scale-110 transition-transform duration-500">
+            {item.icon}
+          </div>
+          <h3 className="text-xl font-bold font-sans text-[#2d2a26] mb-3 relative z-10">{item.title}</h3>
+          <p className="text-[#4a4744] font-sans text-sm leading-relaxed relative z-10 max-w-[80%]">{item.desc}</p>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+);
+
 const YouTubeLinkBox = () => (
   <motion.div 
     initial={{ opacity: 0, scale: 0.98 }}
@@ -637,6 +864,10 @@ export default function App() {
                 <ToolsSection />
                 <StatsSection />
                 <QuoteSection />
+                <SkillsSection />
+                <GallerySection />
+                <FeedbackSection />
+                <FAQSection />
                 <YouTubeLinkBox />
                 <CTABox onRead={() => setView('full')} />
               </main>
