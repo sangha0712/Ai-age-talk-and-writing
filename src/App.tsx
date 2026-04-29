@@ -494,6 +494,15 @@ const SkillsSection = () => (
       >
         역량 분석
       </motion.h2>
+      <motion.p
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.1 }}
+        className="mt-4 text-gray-500 font-sans text-sm md:text-base max-w-lg mx-auto"
+      >
+        AI에게 영상을 첨부하고 직접 평가하게하여 나온 통계입니다.
+      </motion.p>
     </div>
 
     <div className="space-y-6 max-w-2xl mx-auto">
