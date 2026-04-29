@@ -7,7 +7,8 @@ import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { 
   ChevronDown, Clapperboard, MonitorPlay, Sparkles, 
   Video, Play, BookOpen, Gamepad2, Lightbulb, 
-  Smartphone, Monitor, Trophy, Compass, ArrowRight, ArrowLeft, X, Youtube 
+  Smartphone, Monitor, Trophy, Compass, ArrowRight, ArrowLeft, X, Youtube,
+  Quote, Clock, PenTool, Layout
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -322,6 +323,149 @@ const HighlightsGrid = () => {
   );
 };
 
+const milestones = [
+  { year: "8살", title: "유튜브 시청과 대리만족", desc: "영상을 보며 '나도 해보고 싶다'는 단순한 호기심으로 시작." },
+  { year: "초등~중학", title: "모바일 편집의 시작", desc: "비바비디오와 키네마스터를 만지며 시행착오 속에서 편집의 재미를 발견." },
+  { year: "중학교 3학년", title: "PC 툴로의 전환", desc: "모바일의 한계와 유료화 이슈로 프리미어 프로와 애프터 이펙트에 입문." },
+  { year: "고등학교 2학년", title: "BACKROOM 편집", desc: "직접 만든 애니메이션과 효과를 반영한 결과물로 약 200회의 조회수를 기록." },
+  { year: "현재 (대학생)", title: "전문적인 학습과 기대", desc: "부담감과 설렘이 교차하는 가운데 편집을 단순한 취미 이상의 것으로 탐구." }
+];
+
+const TimelineSection = () => (
+  <div className="max-w-4xl mx-auto px-6 py-20">
+    <div className="mb-14 text-center">
+      <motion.p 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="text-[#8c857f] font-sans text-sm tracking-widest uppercase mb-3"
+      >
+        History
+      </motion.p>
+      <motion.h2 
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-3xl md:text-4xl font-sans font-bold text-[#2d2a26]"
+      >
+        타임라인
+      </motion.h2>
+    </div>
+    
+    <div className="relative border-l border-black/10 ml-4 md:ml-20 space-y-12">
+      {milestones.map((ms, i) => (
+        <motion.div 
+          key={i}
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.1, duration: 0.5 }}
+          className="relative pl-8 md:pl-12"
+        >
+          <div className="absolute -left-[5px] top-1.5 w-[11px] h-[11px] rounded-full bg-[#2d2a26] ring-4 ring-white" />
+          <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6 mb-2">
+            <span className="text-sm font-bold text-gray-400 font-sans tracking-wide">{ms.year}</span>
+            <h3 className="text-xl font-bold font-sans text-[#2d2a26]">{ms.title}</h3>
+          </div>
+          <p className="text-[#4a4744] font-sans leading-relaxed text-sm">{ms.desc}</p>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+);
+
+const ToolsSection = () => (
+  <div className="max-w-4xl mx-auto px-6 py-20">
+    <div className="mb-14 text-center">
+      <motion.p 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="text-[#8c857f] font-sans text-sm tracking-widest uppercase mb-3"
+      >
+        Tools
+      </motion.p>
+      <motion.h2 
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-3xl md:text-4xl font-sans font-bold text-[#2d2a26]"
+      >
+        활용 도구
+      </motion.h2>
+    </div>
+    
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {[
+        { name: "VivaVideo", desc: "1세대 모바일 경험", color: "bg-orange-50 text-orange-600" },
+        { name: "KineMaster", desc: "모바일 편집의 심화", color: "bg-red-50 text-red-600" },
+        { name: "Premiere Pro", desc: "본격적인 PC 편집", color: "bg-purple-50 text-purple-600" },
+        { name: "After Effects", desc: "시각적 이펙트의 연출", color: "bg-indigo-50 text-indigo-600" }
+      ].map((tool, i) => (
+        <motion.div 
+          key={i}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          whileHover={{ y: -5 }}
+          className={`p-6 rounded-3xl flex flex-col items-center justify-center text-center ${tool.color} shadow-sm transition-all`}
+        >
+          <PenTool className="w-8 h-8 mb-4 opacity-80" />
+          <h3 className="font-bold font-sans mb-1">{tool.name}</h3>
+          <p className="text-xs opacity-70 font-sans">{tool.desc}</p>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+);
+
+const StatsSection = () => (
+  <div className="max-w-4xl mx-auto px-6 py-20">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {[
+        { value: "05:00", unit: "AM", label: "반환점 없는 몰입", desc: "중학교 시절, 밤을 새워가며 영상을 완성했던 열정적인 새벽 시간." },
+        { value: "200", unit: "Views", label: "첫 유의미한 성과", desc: "BACKROOM 영상으로 처음 경험한 대중과의 의미 있는 연결." },
+        { value: "8", unit: "Years Old", label: "여정의 시작", desc: "단순한 호기심으로 유튜브 영상을 보며 처음 느꼈던 창작의 동기." }
+      ].map((stat, i) => (
+        <motion.div 
+          key={i}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.1 }}
+          className="bg-white border text-center border-black/5 rounded-[2rem] p-8 shadow-sm flex flex-col items-center"
+        >
+          <div className="flex items-baseline gap-1 mb-2 text-[#2d2a26]">
+            <span className="text-4xl md:text-5xl font-sans font-light tracking-tighter">{stat.value}</span>
+            <span className="font-bold text-gray-400 text-sm tracking-widest">{stat.unit}</span>
+          </div>
+          <h4 className="font-bold font-sans text-[#2d2a26] mb-3">{stat.label}</h4>
+          <p className="text-xs text-gray-500 font-sans leading-relaxed">{stat.desc}</p>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+);
+
+const QuoteSection = () => (
+  <motion.div 
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    viewport={{ once: true }}
+    className="max-w-4xl mx-auto px-6 py-20"
+  >
+    <div className="bg-[#2d2a26] text-[#fcfbf9] rounded-[2.5rem] p-10 md:p-14 text-center relative overflow-hidden">
+      <Quote className="absolute top-8 left-8 w-16 h-16 text-white/5 rotate-180" />
+      <Quote className="absolute bottom-8 right-8 w-16 h-16 text-white/5" />
+      <p className="relative z-10 text-xl md:text-3xl font-sans font-light leading-relaxed mb-6">
+        "재능은 개화하는 것이지만, 센스는 연마하는 것이다. 포기하지 않고 스스로 바뀌지 않으면 결국 아무것도 바뀌지 않는다."
+      </p>
+      <div className="relative z-10 w-12 h-px bg-white/20 mx-auto mb-6"></div>
+      <p className="relative z-10 text-white/50 text-sm font-sans tracking-widest uppercase">제작 경험을 통한 시각의 변화</p>
+    </div>
+  </motion.div>
+);
+
 const YouTubeLinkBox = () => (
   <motion.div 
     initial={{ opacity: 0, scale: 0.98 }}
@@ -489,6 +633,10 @@ export default function App() {
               <HeroSection />
               <main className="relative z-20">
                 <HighlightsGrid />
+                <TimelineSection />
+                <ToolsSection />
+                <StatsSection />
+                <QuoteSection />
                 <YouTubeLinkBox />
                 <CTABox onRead={() => setView('full')} />
               </main>
