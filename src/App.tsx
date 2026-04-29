@@ -7,7 +7,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { 
   ChevronDown, Clapperboard, MonitorPlay, Sparkles, 
   Video, Play, BookOpen, Gamepad2, Lightbulb, 
-  Smartphone, Monitor, Trophy, Compass, ArrowRight, ArrowLeft, X 
+  Smartphone, Monitor, Trophy, Compass, ArrowRight, ArrowLeft, X, Youtube 
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -321,6 +321,45 @@ const HighlightsGrid = () => {
   );
 };
 
+const YouTubeLinkBox = () => (
+  <motion.div 
+    initial={{ opacity: 0, scale: 0.98 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5 }}
+    className="max-w-4xl mx-auto px-6 pb-6 md:pb-10"
+  >
+    <a 
+      href="https://youtu.be/fm8lnmEG9uo?si=P7qjYG0AUbt-02p-" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="bg-white border text-[#2d2a26] border-black/10 rounded-[2.5rem] p-10 md:p-14 text-center cursor-pointer hover:border-black/20 hover:shadow-2xl transition-all shadow-xl overflow-hidden relative group block"
+    >
+      <div className="absolute inset-0 bg-gradient-to-tr from-gray-100 via-transparent to-red-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+      
+      <motion.div
+        whileHover={{ rotate: 5, scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ type: "spring", stiffness: 200 }}
+        className="relative z-10 w-16 h-16 mx-auto mb-6 bg-red-50 text-[#ff0000] rounded-full flex items-center justify-center group-hover:bg-[#ff0000] group-hover:text-white transition-colors"
+      >
+        <Youtube className="w-8 h-8" />
+      </motion.div>
+      
+      <h2 className="relative z-10 text-2xl md:text-3xl font-sans font-bold mb-3 group-hover:text-black transition-colors">관련 유튜브 영상 시청</h2>
+      <p className="relative z-10 text-gray-500 mb-8 font-sans text-sm md:text-base">이야기에 등장하는 영상을 직접 유튜브에서 확인하실 수 있습니다</p>
+      
+      <motion.div 
+        whileHover={{ x: 5 }}
+        className="relative z-10 inline-flex items-center gap-3 text-xs md:text-sm font-sans tracking-widest uppercase bg-black/5 px-6 py-3 rounded-full group-hover:bg-[#ff0000] group-hover:text-white transition-colors font-bold"
+      >
+        Watch on YouTube
+        <ArrowRight className="w-4 h-4" />
+      </motion.div>
+    </a>
+  </motion.div>
+);
+
 const CTABox = ({ onRead }: { onRead: () => void }) => (
   <motion.div 
     initial={{ opacity: 0, scale: 0.98 }}
@@ -449,6 +488,7 @@ export default function App() {
               <HeroSection />
               <main className="relative z-20">
                 <HighlightsGrid />
+                <YouTubeLinkBox />
                 <CTABox onRead={() => setView('full')} />
               </main>
             </motion.div>
